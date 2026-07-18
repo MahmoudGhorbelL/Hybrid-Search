@@ -88,7 +88,11 @@ def ask(question):
 
     for rank, doc in enumerate(semantic_docs, start=1):
 
-        key =doc.metadata["source"]
+        key = (
+            doc.metadata["source"],
+            doc.page_content
+        )
+
         rrf_scores[key] += 1 / (k_rrf + rank)
 
         doc_map[key] = doc
@@ -97,7 +101,10 @@ def ask(question):
 
     for rank, doc in enumerate(lexical_docs, start=1):
 
-        key = doc.metadata["source"]
+        key = (
+            doc.metadata["source"],
+            doc.page_content
+        )
 
         rrf_scores[key] += 1 / (k_rrf + rank)
 
